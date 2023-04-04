@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tables', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('guest_number');
-            $table->string('status')->default('disponible');
-            $table->string('location');
-            $table->timestamps();
+        Schema::create('category_menu', function (Blueprint $table) {
+            $table->foreignId('category_id')->constrained();
+            $table->foreignId('menu_id')->constrained();
         });
     }
 
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tables');
+        Schema::dropIfExists('category_menu');
     }
 };
