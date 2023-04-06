@@ -38,7 +38,7 @@ class TableController extends Controller
             'location' => $request->location,
         ]);
 
-        return to_route('admin.tables.index');
+        return to_route('admin.tables.index')->with('success', 'Mesa creada con éxito.');
     }
 
     /**
@@ -64,7 +64,7 @@ class TableController extends Controller
     {
         $table->update($request->validated());
 
-        return to_route('admin.tables.index');
+        return to_route('admin.tables.index')->with('success', 'Mesa actualizada con éxito.');
     }
 
     /**
@@ -72,8 +72,9 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
+        $table->reservations()->delete();
         $table->delete();
 
-        return to_route('admin.tables.index');
+        return to_route('admin.tables.index')->with('danger', 'Mesa eliminada con éxito.');
     }
 }

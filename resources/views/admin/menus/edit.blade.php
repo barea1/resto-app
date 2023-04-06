@@ -22,6 +22,9 @@
                           <input type="text" id="name" name="name" value="{{$menu->name}}"
                           class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
+                        @error('name')
+                        <div class="text-sm text-red-400">{{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="sm:col-span-6">
                         <label for="image" class="block text-sm font-medium text-gray-700"> Imagen </label>
@@ -32,6 +35,9 @@
                           <input type="file" id="image" name="image" 
                           class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
+                        @error('image')
+                        <div class="text-sm text-red-400">{{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="sm:col-span-6">
                         <label for="price" class="block text-sm font-medium text-gray-700"> Precio </label>
@@ -39,6 +45,9 @@
                           <input type="number" min="0.00" max="10000.00" step="0.01" id="price" name="price" value="{{$menu->price}}"
                           class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
+                        @error('price')
+                        <div class="text-sm text-red-400">{{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="sm:col-span-6 pt-5">
                         <label for="body" class="block text-sm font-medium text-gray-700">Descripción</label>
@@ -48,6 +57,9 @@
                           {{$menu->description}}</textarea>
                           
                         </div>
+                        @error('description')
+                        <div class="text-sm text-red-400">{{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="sm:col-span-6 pt-5">
                         <label for="categories" class="block text-sm font-medium text-gray-700">Categorias</label>
