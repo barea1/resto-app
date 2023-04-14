@@ -29,7 +29,6 @@ class ReservationStoreRequest extends FormRequest
             'email' => ['required', 'email'],
             'tel_number' => ['required'],
             'res_date' => ['required', 'date', new DateBetween, new TimeBetween],
-            'table_id' => ['required'],
             'guest_number' => ['required']
         ];
     }

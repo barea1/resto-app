@@ -62,24 +62,41 @@ class ReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Reservation $reservation)
     {
-        //
+        $tables = Table::where('status', TableStatus::Disponible)->get();
+        return view('admin.reservations.edit', compact('reservation','tables'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ReservationStoreRequest $request, Reservation $reservation)
     {
-        //
+        $table = Table::findOrFail($request->table_id);
+        if ($request->guest_number > $table->guest_number) {
+            return back()->with('warning', 'Escoge la mesa con suficiente capacidad');
+        }
+        $request_date = Carbon::parse($request->res_date);
+        $reservations = $table->reservations()->where('id', '!=', $reservation->id)->get();
+        foreach ($reservations as $res) {
+            $res_date = Carbon::parse($res->res_date);
+           if ($res_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
+            return back()->with('warning', 'Esta mesa está reservada para esa fecha');
+           }
+        }
+
+        $reservation->update($request->validated());
+        return to_route('admin.reservations.index')->with('success', 'Reserva actualizada con éxito.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+        return to_route('admin.reservations.index')->with('danger', 'Reserva eliminada con éxito.');
+
     }
 }
