@@ -36,6 +36,7 @@ class ResNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $cancelUrl = route('reservation.cancel', $this->reservaData->id);
+        
         return (new MailMessage)
             ->subject('¡Nueva reserva realizada!')
             ->greeting('Hola, '.$this->reservaData->first_name)
