@@ -9,7 +9,9 @@ use App\Http\Controllers\Frontend\MenuController as FrontendMenuController;
 use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
 use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\ProfileController;
+use App\Notifications\ResNotification;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,8 @@ Route::post('/reservation/step-one', [FrontendReservationController::class, 'sto
 Route::get('/reservation/step-two', [FrontendReservationController::class, 'stepTwo'])->name('reservations.step.two');
 Route::post('/reservation/step-two', [FrontendReservationController::class, 'storeStepTwo'])->name('reservations.store.step.two');
 Route::get('/thankyou',[WelcomeController::class, 'thankyou'])->name('thankyou');
+Route::get('/cancel',[WelcomeController::class, 'cancel'])->name('cancel');
+Route::get('/reservation/{id}/cancel', [FrontendReservationController::class, 'cancel'])->name('reservation.cancel');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

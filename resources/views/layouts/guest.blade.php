@@ -23,7 +23,7 @@
             <div class="flex items-center justify-between">
                 <a class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 md:text-2xl hover:text-green-400"
                     href="/">
-                    Resto-App 
+                    Restaurante La Biznaga
                 </a>
                 <!-- Mobile menu button -->
                 <div @click="isOpen = !isOpen" class="flex md:hidden">
@@ -58,19 +58,7 @@
     <div class="font-sans text-gray-900 antialiased min-h-screen">
         {{ $slot }}
     </div>
-    {{-- <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <div>
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </div>
-
-        <div class="font-sans text-gray-900 antialiased min-h-screen">
-            {{ $slot }}
-        </div> 
-      </div> --}}
-      
-
+ 
     <footer class="bg-gray-800 border-t border-gray-200">
         <div class="container flex flex-wrap items-center justify-center px-4 py-8 mx-auto lg:justify-between">
             <div class="flex flex-wrap justify-center">

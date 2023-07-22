@@ -10,12 +10,12 @@ use App\Rules\TimeBetween;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class ReservationController extends Controller
 {
     public function stepOne(Request $request)
     {
-
         $reservation = $request->session()->get('reservation');
         $min_date = Carbon::today();
         $max_date = Carbon::now()->addWeek();
@@ -24,14 +24,12 @@ class ReservationController extends Controller
 
     public function storeStepOne(Request $request)
     {
-
         $validated = $request->validate([
             'first_name' => ['required'],
             'last_name' => ['required'],
             'email' => ['required', 'email'],
             'tel_number' => ['required'],
             'res_date' => ['required', 'date', new DateBetween, new TimeBetween],
-
             'guest_number' => ['required']
         ]);
 
@@ -69,11 +67,23 @@ class ReservationController extends Controller
         $validated = $request->validate([
             'table_id' => ['required']
         ]);
+
         $reservation = $request->session()->get('reservation');
         $reservation->fill($validated);
         $reservation->save();
         $request->session()->forget('reservation');
 
         return to_route('thankyou');
+    }
+
+    public function cancel($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        if ( $reservation) {
+           $reservation->delete(); 
+           return to_route('cancel');
+        }
+        
+        
     }
 }

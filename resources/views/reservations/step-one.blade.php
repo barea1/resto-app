@@ -72,21 +72,7 @@
                       <div class="text-sm text-red-400">{{ $message }}</div>
                       @enderror
                     </div>
-                    {{-- <div class="mt-6 p-4">
-                      <button type="submit" 
-                      class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg">Siguiente paso</button>
-                  
-                    </div>
-
-                  </form>
-                <div class="">
-                  <label class="block text-base">
-                    Your Message
-                  </label>
-                  <textarea name="" id="" rows="8" cols="30"
-                    class="w-full p-3 text-base border rounded-md focus:border-green-400 focus:outline-none focus:ring-1 focus:ring-green-600"
-                    placeholder=""></textarea>
-                </div> --}}
+  
                 <div class ="mt-6 p-4 flex justify-end">
                     <button type="submit" 
                       class="px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
