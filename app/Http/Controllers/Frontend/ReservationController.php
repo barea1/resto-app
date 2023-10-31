@@ -56,7 +56,7 @@ class ReservationController extends Controller
         })->pluck('table_id');
 
         $tables = Table::where('status', TableStatus::Disponible)
-            ->where('guest_number', '>=', $reservation->guest_number)
+            ->where('guest_number', '=', $reservation->guest_number)
             ->whereNotIn('id', $res_table_ids)->get();
         return view('reservations.step-two', compact('reservation', 'tables'));
     }
